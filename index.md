@@ -11,15 +11,15 @@ Skyline does not sell personal data, show third-party advertising, or create pub
 
 You can choose a place manually or optionally allow Android location access. Skyline uses the selected coordinates to calculate astronomy times on your device and to request local weather forecasts. Place-search text is used to retrieve matching locations.
 
-In the production service, weather coordinates and place-search text travel over encrypted HTTPS through a Black and Blue Cloudflare Worker to Open-Meteo's commercial weather or geocoding service. The Android app does not contain the commercial provider key. Cloudflare and Open-Meteo may process network information such as IP address and standard service logs under their respective terms. Skyline does not use location for advertising or continuous background tracking.
+In the production service, weather coordinates and place-search text travel over encrypted HTTPS through a Black and Blue Cloudflare Worker to Open-Meteo's commercial weather or geocoding service. The Android app does not contain the commercial provider key. Cloudflare and Open-Meteo may process network information such as IP address and standard service logs under their respective terms. Open-Meteo says paid-API request URLs and IP addresses may be logged for usage monitoring, individual logs are removed after 90 days, and aggregate usage counts may remain ([Open-Meteo terms](https://open-meteo.com/en/terms)). Request URLs can contain selected coordinates or place-search text. Skyline does not use location for advertising or continuous background tracking.
 
 Saved locations and app preferences are stored in app-private storage on your device. Android backup and device transfer are disabled for Skyline data.
 
 ## 2. Analytics and crash diagnostics
 
-Skyline uses Google Analytics for Firebase to record that the Android app was opened and Firebase Crashlytics to receive crash reports and developer-recorded non-fatal diagnostics. These services may process an app-instance identifier, app version, device model, operating-system information, coarse location inferred from network information, app-interaction events, crash logs, diagnostics, and network information such as IP address.
+Skyline uses Google Analytics for Firebase to record the app's `app_opened` event; the SDK also automatically records app lifecycle, screen, session, and in-app purchase or subscription events. Firebase Crashlytics receives crash reports and developer-recorded non-fatal diagnostics. These services may process an app-instance identifier, app version, device model, operating-system information, coarse location inferred from network information, app-interaction events, purchase event details such as product ID and price, crash logs, diagnostics, and network information such as IP address.
 
-Skyline does not attach selected locations, search text, forecast content, purchase identifiers, or advertising identifiers to analytics or crash events. Advertising-ID collection and ad-personalization signals are disabled, and the Android release removes advertising and AdServices identifier permissions.
+Skyline's own telemetry calls do not attach selected locations, search text, forecast content, purchase identifiers, or advertising identifiers to analytics or crash events. The Analytics SDK's automatic purchase events may include product identifiers and prices. Advertising-ID collection and ad-personalization signals are disabled, and the Android release removes advertising and AdServices identifier permissions.
 
 ## 3. Optional purchases
 
